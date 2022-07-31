@@ -4,19 +4,19 @@
 
 
 
-## Initialize the Docker engine in swarm mode before cloning the service that will create to-do tasks.
+## Initialize swarm orchestrator and clone to-do task service.
 
 	• https://github.com/aklivity/todo-service
 
 
 
-### Docker stack deploy Kafka to the swarm.
+### Add Kafka 
 
 	• https://docs.aklivity.io/zilla/get-started/build-todo-app#step-1-kafka
  
 
 
-### Zilla.json file for POST, PUT, DELETE and GET tasks 
+### Zilla.json  
 
 	• https://docs.aklivity.io/zilla/get-started/build-todo-app#step-4-web-app
 
