@@ -1,27 +1,30 @@
-# Demo-to-do-app
-Aklivity demo app showing the convenience of the zilla api with kafka and docker swarm orchestrator.
+## Demo-to-do-app
+
+	• Deploying a Spring Boot and Vue.js application to a docker engine in swarm mode, with stack deploy.
 
 
-Backend in Java with Spring Boot, steps 1-3
 
-https://docs.aklivity.io/zilla/get-started/build-todo-app#step-1-kafka
+## Initialize the Docker engine in swarm mode before cloning the service that will create to-do tasks.
 
-
-Create and run tasks from root project level in .yml and .json.
-
-https://github.com/aklivity/todo-service
+	• https://github.com/aklivity/todo-service
 
 
-npm install and build vue front end 
 
-https://github.com/aklivity/todo-app
+### Docker stack deploy Kafka to the swarm.
 
-https://docs.aklivity.io/zilla/get-started/build-todo-app#step-4-web-app
-
-
-If nodejs version is after 18 try with: https://nodejs.org/download/release/v16.14.0/
+	• https://docs.aklivity.io/zilla/get-started/build-todo-app#step-1-kafka
+ 
 
 
-Steps 1-4 sample
+### Zilla.json to curl POST, PUT, DELETE and GET tasks 
 
-![sample_tasks](https://user-images.githubusercontent.com/54422342/182006552-9f8f3846-458a-45c1-83fb-2536cc1106d0.jpg)
+	• https://docs.aklivity.io/zilla/get-started/build-todo-app#step-4-web-app
+
+
+### npm and nodejs versions for the vue.js app: 
+	
+	• https://nodejs.org/download/release/v16.14.0/
+	• https://github.com/aklivity/todo-app
+
+  
+ ![Demo_Login](https://user-images.githubusercontent.com/54422342/182010993-35829adf-be94-410b-b356-b63a63341f5c.jpg)
