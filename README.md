@@ -16,7 +16,7 @@
  
 
 
-### Zilla.json to curl POST, PUT, DELETE and GET tasks 
+### Zilla.json file for POST, PUT, DELETE and GET tasks 
 
 	• https://docs.aklivity.io/zilla/get-started/build-todo-app#step-4-web-app
 
@@ -25,6 +25,10 @@
 	
 	• https://nodejs.org/download/release/v16.14.0/
 	• https://github.com/aklivity/todo-app
+	
+	
 
-  
- ![Demo_Login](https://user-images.githubusercontent.com/54422342/182010993-35829adf-be94-410b-b356-b63a63341f5c.jpg)
+  ![sample_tasks](https://user-images.githubusercontent.com/54422342/182011051-c3137a39-6b4b-4229-ba73-e09a065e9d3e.jpg)
+
+
+
