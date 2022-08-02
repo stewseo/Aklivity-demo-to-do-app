@@ -1,305 +1,183 @@
 {
   "name": "example",
-
-  "bindings": {
-
-    "tcp_server0": {
-      "type": "tcp",
+  "vaults":
+  {
+    "server":
+    {
+      "type": "filesystem",
+      "options":
+      {
+        "keys":
+        {
+          "store": "localhost.p12",
+          "type": "pkcs12",
+          "password": "generated"
+        }
+      }
+    }
+  },
+  "bindings":
+  {
+    "tcp_server0":
+    {
+      "type" : "tcp",
       "kind": "server",
-      "options": {
+      "options":
+      {
+        "host": "0.0.0.0",
+        "port": 9090
+      },
+      "exit": "tls_server0"
+    },
+    "tcp_server1":
+    {
+      "type" : "tcp",
+      "kind": "server",
+      "options":
+      {
         "host": "0.0.0.0",
         "port": 8080
       },
       "exit": "http_server0"
     },
-
-    "http_server0": {
-      "type": "http",
+    "tls_server0":
+    {
+      "type" : "tls",
       "kind": "server",
-      "options": {
-        "access-control": {
-          "policy": "cross-origin"
-        },
-
-        "guards": {
-          "jwt0": {
-            "type":"jwt",
-            "options": {
-              "issuer": "https://aklivity.us.auth0.com/",
-              "audience": "http://localhost:8080/tasks",
-              "keys": [
-                {
-                  "alg":"RS256",
-                  "kty":"RSA",
-                  "use":"sig",
-                  "n":"xpUpx4ytuhi0Tz4_l7qqigo_CleAGBs7zalBLHR68tRz3EM2rf6JZapeT7vA6FcdGJskcqNSEYZJsbX0RWsqH_2WwXKOV8HOJJ_XrUmWy1Eeeco8nqM7NoImvubQ_3pxwGq2RaW4Ll3jZ90tWEWoGlk9qo_oJc2WKfnHSjpzuQxX0v5xKxJ3qJN9-SzJ-hit89Uj67o9aC5qOYbZTNgYDOyuawhAN3MlVF_twj7iqogpJprQEeLZTMpsmQbx0DvAju4Za_edJXAkVQeAeQq04SgLU0cagEmk7raNAuk19mWjPAPDq8OldVoecxtsqCGF_I17xdWozI98tJPDS00YWw",
-                  "e":"AQAB",
-                  "kid":"x9YmmTzyWUxAj6683CkM-",
-                  "x5t":"xKsfyirPoDUfrpgvjnKI5wmYzBg",
-                  "x5c":
-                  [
-                    "MIIDBTCCAe2gAwIBAgIJfcoikPv8CQX+MA0GCSqGSIb3DQEBCwUAMCAxHjAcBgNVBAMTFWFrbGl2aXR5LnVzLmF1dGgwLmNvbTAeFw0yMjA1MzEyMTI5MzZaFw0zNjAyMDcyMTI5MzZaMCAxHjAcBgNVBAMTFWFrbGl2aXR5LnVzLmF1dGgwLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMaVKceMrboYtE8+P5e6qooKPwpXgBgbO82pQSx0evLUc9xDNq3+iWWqXk+7wOhXHRibJHKjUhGGSbG19EVrKh/9lsFyjlfBziSf161JlstRHnnKPJ6jOzaCJr7m0P96ccBqtkWluC5d42fdLVhFqBpZPaqP6CXNlin5x0o6c7kMV9L+cSsSd6iTffksyfoYrfPVI+u6PWguajmG2UzYGAzsrmsIQDdzJVRf7cI+4qqIKSaa0BHi2UzKbJkG8dA7wI7uGWv3nSVwJFUHgHkKtOEoC1NHGoBJpO62jQLpNfZlozwDw6vDpXVaHnMbbKghhfyNe8XVqMyPfLSTw0tNGFsCAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUUONbQh3M0n4qXgTRDu7F1XgFSN0wDgYDVR0PAQH/BAQDAgKEMA0GCSqGSIb3DQEBCwUAA4IBAQBdskJlljltBm+JPPEStfa264aKiKvdyjSuwQcvrqXPm5q5/GEmKjMdG3c+3R6BmgWOKCHL3Bg70aFWidqy6sYfbdZ806JctN2FGsJUa5hSTZSjkhn+VkER16/6iCNr5e/KVnZwkWd5U05asshoaMugHTLlFHISxJ2qMUKda2Wi3tkf7eMzc7+1BReY+6etT0ZMf1st1BPalj41cnaBSiLcO67s7XIvH2gkTdYABbzIwXBLuWvQUZ5pX73JdCOuXhfXN/3oE3ICZfOJjGcqeg4eAO8Ns/NFyho8U2xFP8pqhrHqyvxkNHh7eJZaB5gdfUodL4Ldtkmz351zFBCRey0g"
-                  ]
-                },
-                {
-                  "alg":"RS256",
-                  "kty":"RSA",
-                  "use":"sig",
-                  "n":"zlx0IeG8Gzw77BPCuR9MvZVSbSTRkfkcAklS23roIr4mxLr8m5I2Q2bOj56qHztV8frPVTZ0GyesxwScdaSRkNomF2nnzibWRabcek50UmHbpgeA3dXAmxCMUR-Tah0w-eCSsbXu6PbtpWmLm_7niSJnRed45x7b876E2G_DitQFErGMZaLmSG7ewF0aHz-gn37Uio2l71-oXnvshpC7Y17-TUYUDKIiko6P1UKsY7fUBEaZk9-he6Khsny7KYUkcZ1F45q0WKlGwiZyZjU8jPhNGPIc8qj6QmjEhJ07IzjDR4x8pZN3F4go6mKB1thWWhGWrkaLI8UmluHDcD33RQ",
-                  "e":"AQAB",
-                  "kid":"sBT98m8u8lpwvV_Cm5ZAX",
-                  "x5t":"vfM0DKkRNUmYxs13GJnM-NlADuU",
-                  "x5c":
-                  [
-                    "MIIDBTCCAe2gAwIBAgIJevGCW7bs17g5MA0GCSqGSIb3DQEBCwUAMCAxHjAcBgNVBAMTFWFrbGl2aXR5LnVzLmF1dGgwLmNvbTAeFw0yMjA1MzEyMTI5MzZaFw0zNjAyMDcyMTI5MzZaMCAxHjAcBgNVBAMTFWFrbGl2aXR5LnVzLmF1dGgwLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAM5cdCHhvBs8O+wTwrkfTL2VUm0k0ZH5HAJJUtt66CK+JsS6/JuSNkNmzo+eqh87VfH6z1U2dBsnrMcEnHWkkZDaJhdp584m1kWm3HpOdFJh26YHgN3VwJsQjFEfk2odMPngkrG17uj27aVpi5v+54kiZ0XneOce2/O+hNhvw4rUBRKxjGWi5khu3sBdGh8/oJ9+1IqNpe9fqF577IaQu2Ne/k1GFAyiIpKOj9VCrGO31ARGmZPfoXuiobJ8uymFJHGdReOatFipRsImcmY1PIz4TRjyHPKo+kJoxISdOyM4w0eMfKWTdxeIKOpigdbYVloRlq5GiyPFJpbhw3A990UCAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUt/86Q4B1Xalsr8077ehQ9iqi3rkwDgYDVR0PAQH/BAQDAgKEMA0GCSqGSIb3DQEBCwUAA4IBAQBC6ejNbo9u7+qFvh+j1Zh7YZW+uz06Gd4WnwCU+926JP6U7NMNt3guvPVPYtFXSpKhdAom2t/UjBVZh3l7DATU48rE4E/9pzLu8Urg9AVkfRHhLQi+6JZv7ZXDyEcUPtl6jENYZhT1CS2lPsDQ35Ap4BUgWVV8AOOacLVsomHRtS8Q1MtKbNvR+7tJeUEqRxCE7RNXM+FXMDPtwtn5DeKgdDF1HJh95G2Pw4m2W0ZtV1h6NtTuMZMgJtQSqF2IDwaPghLCqdznecLtwuUrVZxjxpuxX2vdYlmtLi2SPf1coKhRHYb4AMj8NNKmBZs9hgPOJxkvQxu8sh7XFbKSQ0gY"
-                  ]
-                }
-              ]
-            }
-          }
-        },
-
-        "authorization": {
-          "jwt0": {
-            "credentials": {
-              "headers": {
-                "authorization": "Bearer {credentials}"
-              },
-              "query": {
-                "access_token": "{credentials}"
-              }
-            }
-          }
-        }
+      "vault": "server",
+      "options":
+      {
+        "keys": [ "localhost" ],
+        "sni": [ "localhost" ],
+        "alpn": [ "http/1.1", "h2" ]
       },
-      "routes": [
+      "exit": "http_server0"
+    },
+    "http_server0":
+    {
+      "type" : "http",
+      "kind": "server",
+      "routes":
+      [
         {
-          "when": [
+          "when":
+          [
             {
-              "headers": {
-                ":method": "POST",
-                ":path": "/tasks"
+              "headers":
+              {
+                ":scheme": "http",
+                ":authority": "localhost:8080"
               }
             },
             {
-              "headers": {
-                ":method": "PUT",
-                ":path": "/tasks/*"
-              }
-            },
-            {
-              "headers": {
-                ":method": "DELETE",
-                ":path": "/tasks/*"
+              "headers":
+              {
+                ":scheme": "https",
+                ":authority": "localhost:9090"
               }
             }
           ],
           "exit": "http_kafka_proxy0"
-        },
-        {
-          "when": [
-            {
-              "headers": {
-                ":method": "GET",
-                ":path": "/tasks"
-              }
-            }
-          ],
-          "exit": "sse_server0"
         }
-      ],
-      "exit": "http_filesystem_proxy0"
+      ]
     },
-
-    "sse_server0": {
-      "type" : "sse",
-      "kind": "server",
-      "exit": "sse_kafka_proxy0"
-    },
-
-
-    "sse_kafka_proxy0": {
-      "type" : "sse-kafka",
+    "http_kafka_proxy0":
+    {
+      "type" : "http-kafka",
       "kind": "proxy",
       "routes":
       [
         {
-          "guarded": {
-            "jwt0": [ "read:tasks" ]
-          },
-          "when": [
+          "when":
+          [
             {
-              "path": "/tasks"
+              "method": "GET",
+              "path": "/items"
             }
           ],
           "exit": "kafka_cache_client0",
-          "with": {
-            "topic": "task-snapshots",
-            "event":
+          "with":
+          {
+            "capability": "fetch",
+            "topic": "items-snapshots",
+            "merge":
             {
-              "id": "[\"${base64(key)}\",\"${etag}\"]"
-            }
-          }
-        }
-      ]
-    },
-
-    "http_kafka_proxy0": {
-      "type": "http-kafka",
-      "kind": "proxy",
-      "routes": [
-        {
-          "guarded": {
-            "jwt0": [ "write:tasks" ]
-          },
-          "when": [
-            {
-              "method": "POST",
-              "path": "/tasks"
-            }
-          ],
-          "exit": "kafka_cache_client0",
-          "with": {
-            "capability": "produce",
-            "topic": "task-commands",
-            "key": "${idempotencyKey}",
-            "reply-to": "task-replies",
-            "overrides": {
-              "zilla:domain-model": "CreateTaskCommand"
+              "content-type": "application/json"
             }
           }
         },
         {
-          "guarded": {
-            "jwt0": [ "write:tasks" ]
-          },
-          "when": [
+          "exit": "kafka_cache_client0",
+          "when":
+          [
             {
-              "method": "PUT",
-              "path": "/tasks/{id}"
+              "method": "GET",
+              "path": "/items/{id}"
             }
           ],
-          "exit": "kafka_cache_client0",
-          "with": {
-            "capability": "produce",
-            "topic": "task-commands",
-            "key": "${params.id}",
-            "reply-to": "task-replies",
-            "overrides": {
-              "zilla:domain-model": "RenameTaskCommand"
-            }
-          }
-        },
-        {
-          "guarded": {
-            "jwt0": [ "write:tasks" ]
-          },
-          "when": [
-            {
-              "method": "DELETE",
-              "path": "/tasks/{id}"
-            }
-          ],
-          "exit": "kafka_cache_client0",
-          "with": {
-            "capability": "produce",
-            "topic": "task-commands",
-            "key": "${params.id}",
-            "reply-to": "task-replies",
-            "overrides": {
-              "zilla:domain-model": "DeleteTaskCommand"
-            }
+          "with":
+          {
+            "capability": "fetch",
+            "topic": "items-snapshots",
+            "filters":
+            [
+              {
+                "key": "${params.id}"
+              }
+            ]
           }
         }
       ]
     },
-
-
-    "kafka_cache_client0": {
-      "type": "kafka",
+    "kafka_cache_client0":
+    {
+      "type" : "kafka",
       "kind": "cache_client",
-      "exit": "kafka_cache_server0"
-    },
-
-    "kafka_cache_server0": {
-      "type": "kafka",
-      "kind": "cache_server",
-      "options": {
-        "bootstrap": [
-          "task-replies",
-          "task-snapshots"
+      "options":
+      {
+        "merged":
+        [
+          "items-snapshots"
+        ],
+        "bootstrap":
+        [
+          "items-snapshots"
         ]
       },
+      "exit": "kafka_cache_server0"
+    },
+    "kafka_cache_server0":
+    {
+      "type" : "kafka",
+      "kind": "cache_server",
       "exit": "kafka_client0"
     },
-
-
-    "kafka_client0": {
-      "type": "kafka",
+    "kafka_client0":
+    {
+      "type" : "kafka",
       "kind": "client",
       "exit": "tcp_client0"
     },
-
-    "tcp_client0": {
-      "type": "tcp",
+    "tcp_client0":
+    {
+      "type" : "tcp",
       "kind": "client",
-      "options": {
+      "options":
+      {
         "host": "kafka.internal.net",
         "port": 29092
       },
-      "routes": [
+      "routes":
+      [
         {
-          "when": [
+          "when":
+          [
             {
               "cidr": "0.0.0.0/0"
             }
           ]
         }
       ]
-    },
-
-
-    "http_filesystem_proxy0": {
-      "type" : "http-filesystem",
-      "kind": "proxy",
-      "routes":
-      [
-        {
-          "when":
-          [
-            {
-              "path": "/"
-            }
-          ],
-          "exit": "filesystem_server0",
-          "with":
-          {
-            "path": "index.html"
-          }
-        },
-        {
-          "when":
-          [
-            {
-              "path": "/{path}"
-            }
-          ],
-          "exit": "filesystem_server0",
-          "with":
-          {
-            "path": "${params.path}"
-          }
-        }
-      ]
-    },
-
-    "filesystem_server0": {
-      "type" : "filesystem",
-      "kind": "server",
-      "options":
-      {
-        "location": "/app/dist/"
-      }
     }
   }
 }
